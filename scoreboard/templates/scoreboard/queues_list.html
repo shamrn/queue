@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+    <section class="section-queues">
+        <div class="container-queues">
+            {% for group in groups %}
+            <h4 class="title-group">{{ group_name }}: {{ group.title }}</h4>
+            <ul class="queues">
+                {% if group.queues.all %}
+                {% for queue in group.queues.all %}
+                    <li class="item-queue" onclick="document.location='{% url 'queue' queue.pk %}'">
+                        <p>{{ queue.name }}</p>
+                        <a class="link-queue" href="{% url 'queue' queue.pk %}">Открыть</a>
+                    </li>
+                {% endfor %}
+                {% else %}
+                <p class="no-queue">Очередь отсутствует</p>
+                {% endif %}
+            </ul>
+            {% endfor %}
+        </div>
+    </section>
+
+{% endblock %}

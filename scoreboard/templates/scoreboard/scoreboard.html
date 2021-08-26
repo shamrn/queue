@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block meta %}
+    <meta http-Equiv = "refresh" content = "5">
+{% endblock %}
+
+{% block content %}
+
+        <section class="section-board">
+            <div class="container-board">
+                <div class="left-side">
+                    <p class="time">&#9719; {{ time }}</p>
+                    <h5 class="title-wait">{{ left_title }}</h5>
+                    <div class="left-board">
+                        {% for element in elements %}
+                            <p class="element">
+                                {{ element.element_queue.queue_id }}{% if element.order_queue <= 9 %}0{% endif %}{{ element.order_queue }}</p>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="right-side">
+                    <p class="queue-name">{{ queue.name }}</p>
+                    <h5 class="title-pass">{{ right_title }}</h5>
+                    <div class="right-board">
+                        {% for element in elements_handler %}
+                            <p class="element">
+                                {{ element.element_queue.queue_id }}{% if element.order_queue <= 9 %}0{% endif %}{{ element.order_queue }}&#10144;{{ element.handler_code.title }}
+                            </p>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </section>
+
+{% endblock %}
